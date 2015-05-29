@@ -5,15 +5,12 @@ import static spark.SparkBase.*;
 import hello.sparkjava.transformer.JsonTransformer;
 import hello.sparkjava.viewmodel.HelloViewModel;
 
-import java.awt.Desktop;
-import java.net.URI;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import spark.ModelAndView;
-import spark.Spark;
 import spark.servlet.SparkApplication;
 import spark.template.freemarker.FreeMarkerEngine;
 
@@ -26,10 +23,6 @@ public class HelloWorld implements SparkApplication {
 	@Override
 	public void init() {
 		staticFileLocation("/public");
-
-		Optional.ofNullable(System.getenv("PORT")).ifPresent(p -> {
-			port(Integer.parseInt(p));
-		});
 
 		get("/", (request, response) -> {
 			//System.out.println(request.queryParams("p"));
@@ -50,18 +43,10 @@ public class HelloWorld implements SparkApplication {
 				}, new JsonTransformer());
 	}
 
-	public static void main(String[] args) throws Exception {
-		try {
-			new HelloWorld().init();
-			Desktop.getDesktop().browse(URI.create("http://localhost:4567/"));
-
-			while (System.in.available() == 0) {
-				Thread.sleep(5000);
-			}
-			Spark.stop();
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.exit(100);
-		}
+	public static void main(String[] args) {
+		Optional.ofNullable(System.getenv("PORT")).ifPresent(p -> {
+			port(Integer.parseInt(p));
+		});
 	}
+
 }
