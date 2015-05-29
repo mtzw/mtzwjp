@@ -35,6 +35,10 @@ public class HelloWorld implements SparkApplication {
 				return new ModelAndView(model, "hello.ftl");
 			}, new FreeMarkerEngine());
 
+		get("/test", (request, response) -> {
+			return "website is running!";
+		});
+
 		post("/hello",
 				(request, response) -> {
 					HelloViewModel model = new Gson().fromJson(request.body(), HelloViewModel.class);
