@@ -31,12 +31,7 @@ task wrapper(type: Wrapper) {
   gradleVersion = '2.0'
 }
 
-task copyJetty (type : Copy) {
-    into "$buildDir/jetty"
-    from configurations.providedCompile
-}
-
-task stage (dependsOn : ['clean', 'copyJetty'])
+task stage (dependsOn : 'clean')
 stage.finalizedBy build
 
 repositories {
@@ -45,14 +40,12 @@ repositories {
 }
 
 dependencies {
-  compile 'com.sparkjava:spark-core:2.1'
+  compile 'com.sparkjava:spark-core:2.2'
   compile 'com.sparkjava:spark-template-freemarker:2.0.0'
-  compile 'com.google.guava:guava:18.0'
   compile 'com.google.code.gson:gson:2.3'
   compile 'ch.qos.logback:logback-classic:1.1.2'
   compile 'javax.servlet:javax.servlet-api:3.1.0'
-
-  providedCompile ('org.eclipse.jetty:jetty-runner:9.2.10.v20150310') {
+  compile ('org.eclipse.jetty:jetty-runner:9.2.10.v20150310') {
     exclude module : 'javax.servlet-api'
   }
 

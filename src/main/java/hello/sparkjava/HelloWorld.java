@@ -7,6 +7,7 @@ import hello.sparkjava.viewmodel.HelloViewModel;
 
 import java.awt.Desktop;
 import java.net.URI;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,10 @@ public class HelloWorld implements SparkApplication {
 	public void init() {
 		staticFileLocation("/public");
 
+		Optional.ofNullable(System.getenv("PORT")).ifPresent(p -> {
+			port(Integer.parseInt(p));
+		});
+
 		get("/", (request, response) -> {
 			//System.out.println(request.queryParams("p"));
 
@@ -43,11 +48,6 @@ public class HelloWorld implements SparkApplication {
 					model.setMessage(model.getValue().equals("Ping") ? "Pong!" : "Hoge...");
 					return model;
 				}, new JsonTransformer());
-
-		put("/data", (request, response) -> {
-			return request;
-		});
-
 	}
 
 	public static void main(String[] args) throws Exception {
