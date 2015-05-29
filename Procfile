@@ -1,1 +1,1 @@
-web: node index.js
+web: java $JAVA_OPTS -jar build/jetty/jetty-runner-9.2.10.v20150310.jar --port $PORT build/libs/*.war
