@@ -28,16 +28,12 @@ public class HelloWorld implements SparkApplication {
 			//System.out.println(request.queryParams("p"));
 
 			HelloViewModel model = new HelloViewModel();
-			model.setTitle("Hello World!");
+			model.setTitle("mtzw.jp");
 
 			// The hello.ftl file is located in directory:
 			// src/main/resources/spark/template/freemarker
 				return new ModelAndView(model, "hello.ftl");
 			}, new FreeMarkerEngine());
-
-		get("/test", (request, response) -> {
-			return "website is running!";
-		});
 
 		post("/hello",
 				(request, response) -> {

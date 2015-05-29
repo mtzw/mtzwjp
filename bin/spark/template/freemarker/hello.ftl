@@ -3,8 +3,8 @@
 <html lang="ja">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-  <title>SparkJava Boilerplate</title>
-  <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.js"></script>
+  <title>mtzw.jp</title>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.js"></script>
   <script type="text/javascript" src="./js/md5.js"></script>
 </head>
 <body>
@@ -27,7 +27,10 @@
 </script>
 
 <h1>${title}</h1>
-<h1>The above text is set using a FreeMarkerEngine</h1>
+<ul>
+<li><a href="http://github.com/mtzw">github/mtzw</a>
+<li><a href="http://mtzw.tumblr.com">tumblr/mtzw</a>
+</ul>
 
 <input id="poke" value="Ping" type="button"/>
 <div id="console"></div>
